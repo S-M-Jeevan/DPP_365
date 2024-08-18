@@ -1,0 +1,75 @@
+/*
+Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+*/
+// solution 
+
+class Solution {
+public:
+    vector<int> right(vector<int> arr){ //Nearest Smallest Element to the Right
+        int n=arr.size();
+        vector<int> ans(n);
+        stack<pair<int,int>> st;
+        
+        for(int i=n-1;i>=0;i--){
+            while(!st.empty() and st.top().first>=arr[i]){
+                st.pop();
+            }
+            if (st.empty()){
+                ans[i]=n;
+            }
+            else{
+                ans[i]=st.top().second;
+            }
+            st.push({arr[i],i});
+        }
+        return ans;
+    }
+    vector<int> left(vector<int> arr){ //Nearest Smallest Element to the left
+        int n=arr.size();
+        vector<int> ans(n);
+        stack<pair<int,int>> st;
+        
+        for(int i=0;i<=n-1;i++){
+            while(!st.empty() and st.top().first>=arr[i]){
+                st.pop();
+            }
+            if (st.empty()){
+                ans[i]=-1;
+            }
+            else{
+                ans[i]=st.top().second;
+            }
+            st.push({arr[i],i});
+        }
+        return ans;
+    }
+
+    int solve(vector<int> arr){
+        int n=arr.size();
+        vector<int> l=left(arr);
+        vector<int> r=right(arr);
+        int maxi=INT_MIN;
+        for(int i=0;i<n;i++){
+            int diff=r[i]-l[i]-1;
+            int ans=arr[i]*diff;
+            maxi=max(maxi,ans);
+        }
+        return maxi;
+    }
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        if (matrix.empty()) return 0;
+        int n=matrix.size();
+        int m=matrix[0].size();
+        vector<int> ans(m,0);
+        int maxi=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if (matrix[i][j]=='0') ans[j]=0;
+                else ans[j]++;
+            }
+            int area=solve(ans);
+            maxi=max(maxi,area);
+        }
+        return maxi;
+    }
+};
