@@ -1,0 +1,62 @@
+/*
+Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.
+*/
+//solution
+
+class Solution {
+public:
+    vector<int> right(vector<int> arr){ //Nearest Smallest Element to the Right
+        int n=arr.size();
+        vector<int> ans(n);
+        stack<pair<int,int>> st;
+        
+        for(int i=n-1;i>=0;i--){
+            while(!st.empty() and st.top().first>=arr[i]){
+                st.pop();
+            }
+            if (st.empty()){
+                ans[i]=n;
+            }
+            else{
+                ans[i]=st.top().second;
+            }
+            st.push({arr[i],i});
+        }
+        return ans;
+    }
+    vector<int> left(vector<int> arr){ //Nearest Smallest Element to the left
+        int n=arr.size();
+        vector<int> ans(n);
+        stack<pair<int,int>> st;
+        
+        for(int i=0;i<=n-1;i++){
+            while(!st.empty() and st.top().first>=arr[i]){
+                st.pop();
+            }
+            if (st.empty()){
+                ans[i]=-1;
+            }
+            else{
+                ans[i]=st.top().second;
+            }
+            st.push({arr[i],i});
+        }
+        return ans;
+    }
+
+    int solve(vector<int> arr){
+        int n=arr.size();
+        vector<int> l=left(arr);
+        vector<int> r=right(arr);
+        int maxi=INT_MIN;
+        for(int i=0;i<n;i++){
+            int diff=r[i]-l[i]-1;
+            int ans=arr[i]*diff;
+            maxi=max(maxi,ans);
+        }
+        return maxi;
+    }
+    int largestRectangleArea(vector<int>& arr) {
+        return solve(arr);
+    }
+};
