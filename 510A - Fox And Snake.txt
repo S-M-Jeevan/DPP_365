@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define vi vector<int>
+#define vll vector<long long>
+#define Fast_IO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define all(x) (x).begin(),(x).end() // can be used in sorting
+#define PI 3.141592653589793238462
+#define nl "\n"
+
+//functions
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) ((a / gcd(a, b)) * b)
+#define FOR(i, a, b) for (int i = (a); i < (b); ++i)
+#define yes puts("YES")
+#define no puts("NO")
+#define vecInput(arr) for(int i=0; i<(int)arr.size(); ++i) cin >> arr[i]
+#define vecInputll(arr) for(ll i=0; i<(ll)arr.size(); ++i) cin >> arr[i]
+
+
+int main() {
+    Fast_IO
+    ll a,b;
+    cin>>a>>b;
+    bool swt=true;
+    for(ll i=1;i<=a;i++){
+        if (i&1){
+            for(ll j=1;j<=b;j++){
+                cout<<"#";
+            }
+        }
+        else{
+            if (swt){
+                for(ll j=1;j<=b-1;j++){
+                    cout<<".";
+                }
+                cout<<"#";
+                swt = !swt;
+            }
+            else{
+                cout<<"#";
+                for(ll j=2;j<=b;j++){
+                    cout<<".";
+                }
+                swt = !swt;
+            }
+        }
+        cout << nl;
+    }
+}
