@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define vi vector<int>
+#define vll vector<long long>
+#define Fast_IO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define all(x) (x).begin(),(x).end() // can be used in sorting
+#define PI 3.141592653589793238462
+#define nl "\n"
+
+//functions
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) ((a / gcd(a, b)) * b)
+#define FOR(i, a, b) for (int i = (a); i < (b); ++i)
+#define yes puts("YES")
+#define no puts("NO")
+#define vecInput(arr) for(int i=0; i<(int)arr.size(); ++i) cin >> arr[i]
+#define vecInputll(arr) for(ll i=0; i<(ll)arr.size(); ++i) cin >> arr[i]
+
+
+int main() {
+    Fast_IO
+    vector<ll> pre;
+    ll incr=1;
+    while(incr<10000){
+        for(ll i=1;i<=9;i++){
+            pre.push_back(i*incr);
+            
+        }
+        incr*=10;
+    }
+    pre.push_back(10000);
+    reverse(pre.begin(),pre.end());
+    ll t;
+    cin>>t;
+    while(t--){
+        ll n;
+        cin>>n;
+        ll sum=0;
+        vector<ll> ans;
+        for(ll i=0;i<pre.size();i++){
+            if (sum+pre[i]<=n){
+                if (sum==n){
+                    break;
+                }
+                sum+=pre[i];
+                ans.push_back(pre[i]);
+            }
+        }
+        cout<<ans.size()<<endl;
+        for(ll i=0;i<ans.size();i++){
+            cout<<ans[i]<<" ";
+        }
+        cout<<endl;
+    }
+}
