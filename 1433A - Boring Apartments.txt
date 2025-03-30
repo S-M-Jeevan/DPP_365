@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        string x;
+        cin >> x;
+        int digit = x[0] - '0';
+        int len = x.length();
+        int total = 0;
+        for (int i=1;i<digit;i++) {
+            total += 10;
+        }
+        total+=len*(len+1)/2;
+        cout<<total<<endl;
+    }
+    return 0;
+}
