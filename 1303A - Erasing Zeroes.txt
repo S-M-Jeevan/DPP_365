@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define vi vector<int>
+#define vll vector<long long>
+#define Fast_IO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define all(x) (x).begin(),(x).end() // can be used in sorting
+#define PI 3.141592653589793238462
+#define nl "\n"
+
+//functions
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) ((a / gcd(a, b)) * b)
+#define FOR(i, a, b) for (int i = (a); i < (b); ++i)
+#define yes puts("YES")
+#define no puts("NO")
+#define vecInput(arr) for(int i=0; i<(int)arr.size(); ++i) cin >> arr[i]
+#define vecInputll(arr) for(ll i=0; i<(ll)arr.size(); ++i) cin >> arr[i]
+
+
+int main() {
+    Fast_IO
+    ll t;
+    cin>>t;
+    while(t--){
+        string s;
+        cin>>s;
+        int f=s.find('1');
+        int l=s.rfind('1');
+        if (f==string::npos){
+            cout<<0<<endl;
+        }
+        else{
+            int c=0;
+            for(int i=f;i<=l;i++){
+                if(s[i]=='0'){
+                    c++;
+                }
+            }
+            cout<<c<<endl;
+        }
+    }
+}
